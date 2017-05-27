@@ -1,17 +1,17 @@
 <?php
 $birthday = new DateTimeImmutable();
-$birthday = $birthday->setTimestamp(intval($data['profile']['birthday']));
+$birthday = $birthday->setTimestamp(intval($data['profile']["0"]['birthday']));
 $age = $birthday->diff(new DateTime('NOW'))->format('%y');
-$avatar = empty($data['profile']['avatar']) ? '/img/def-avatar.jpg' : $data['profile']['avatar'];
+$avatar = empty($data['profile']["0"]['avatar']) ? '/img/def-avatar.jpg' : $data['profile']["0"]['avatar'];
 
-$is_owner = (!empty($user) && $user['id'] === $data['profile']['id']);
+$is_owner = (!empty($user) && key($user) === key($data['profile']));
 ?>
 <!-- Profile Page -->
 <div class="profile-box">
   <!-- Main User Info -->
   <div class="profile-header">
     <div class="profile-info pull-left">
-      <?php echo $data['profile']['city']; ?>
+      <?php echo $data['profile']["0"]['city']; ?>
     </div>
     <div class="profile-avatar pull-left<?php echo ($is_owner?' owner':''); ?>">
       <img src="<?php echo $avatar; ?>" alt="Avatar">
@@ -24,7 +24,7 @@ $is_owner = (!empty($user) && $user['id'] === $data['profile']['id']);
 
   <!-- User's Name -->
   <h1 class="profile-name">
-    <?php echo $data['profile']['name']; ?>
+    <?php echo $data['profile']["0"]['name']; ?>
     <?php echo ($is_owner?'<sup class="text-primary">me</sup>':'') ?>
   </h1>
 
