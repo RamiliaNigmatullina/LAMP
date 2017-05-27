@@ -8,4 +8,9 @@ create table "users" (
   "avatar" varchar(120) not null
 );
 
--- ["email", "password", "name", "birthday", "city", "avatar"];
+create table "comments" (
+  "id" serial primary key,
+  "text" varchar(100) not null,
+  "user_id" varchar(100) not null,
+  "comment_id" varchar(100)
+);

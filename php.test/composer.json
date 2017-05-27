@@ -1,0 +1,13 @@
+{
+    "name": "ramilya/php.mvc",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Ramilia Nigmatullina",
+            "email": "RamiliaNigmatullina@gmail.com"
+        }
+    ],
+    "require": {
+        "swiftmailer/swiftmailer": "^5.4"
+    }
+}
