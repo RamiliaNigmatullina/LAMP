@@ -11,12 +11,14 @@
       if(isset($_POST["submitted"])) {
         $user_fields = $common->fill_entity($user->schema(), []);
         $user_data = $common->fill_entity($user->schema(), self::params());
-        // $notices = $user->valid(self::params());
-
+        $notices = $user->valid(self::params());
 
         $user->add_user($user_data);
+        header("Location:/?status=registered");
+        exit();
+
         // if(is_bool($notices)) {
-        //   // var_dump($user_data);
+        //   $user->add_user($user_data);
         //   header("Location:/?status=registered");
         //   exit();
         // } else {
@@ -28,8 +30,7 @@
       return ['view' => 'registration/new',
         'data' => [
             'user' => $user,
-            // 'notices' => $notices
-            // 'notices' => $notices,
+            'notices' => $notices,
             'generalNotice' => $notices["general"]
         ]];
     }

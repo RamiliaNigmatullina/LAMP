@@ -43,7 +43,6 @@
       $user["birthday"] = strtotime($user["birthday"]);
 
       return $db->db_add("users", self::schema(), $user);
-      // return $db->signupUserInDB($user);
     }
 
     function schema() {
@@ -66,7 +65,7 @@
 
       foreach ($profiles as $id => $profile) {
         unset($profile["password"]);
-        $profiles[$id] = $profile;
+        $profiles[$id+1] = $profile;
       }
       return $profiles;
     }
