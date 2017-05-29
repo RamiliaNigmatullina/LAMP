@@ -1,0 +1,13 @@
+{
+    "name": "ramilanigmatullina/php.captcha",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Ramilya Nigmatullina",
+            "email": "ramilya.nigmatullina@flatstack.com"
+        }
+    ],
+    "require": {
+        "abeautifulsite/simple-php-captcha": "^1.0"
+    }
+}

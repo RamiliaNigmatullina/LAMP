@@ -2,7 +2,7 @@
   class Common {
     public function dump($var){
       echo "<pre>";
-      var_dump($var);
+      // var_dump($var);
       echo "</pre>";
     }
 

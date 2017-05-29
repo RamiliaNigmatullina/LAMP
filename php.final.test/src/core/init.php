@@ -12,3 +12,6 @@ require_once CORE_PATH."/core.func.php";
 require_once CORE_PATH."/common.func.php";
 require_once CORE_PATH."/db.func.php";
 require_once SITE_PATH."/models/user.model.php";
+require_once SITE_PATH."/models/post.model.php";
+require_once SITE_PATH."/models/tag.model.php";
+require_once SITE_PATH."/models/post_tag.model.php";

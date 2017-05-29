@@ -54,7 +54,7 @@
       $db = new DB();
       $user = new User();
 
-      if (!is_null($db->db_find_by("user", $user->schema(), ["email" => $user_params["email"]]))) {
+      if (is_null($db->db_find_by("user", $user->schema(), ["email" => $user_params["email"]]))) {
         $notices["general"] = "User with such email already exists.";
       }
     }

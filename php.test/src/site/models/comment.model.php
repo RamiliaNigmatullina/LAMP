@@ -54,9 +54,23 @@
 
     function comment_list(){
       $db = new DB();
+      $user = new User();
       $comments = $db->db_select_all("comments", self::schema());
-
-      return $comments;
+      $comments_result = [];
+      foreach ($comments as $id=>$comment) {
+        $comments_result[$id] = array(
+          'user_name' => $db->db_find_by("user", $user->schema(), ["id" => $comment["user_id"]])[0]["name"],
+          'user_avatar' => $db->db_find_by("user", $user->schema(), ["id" => $comment["user_id"]])[0]["avatar"],
+          'text' => $comment["text"],
+          'id' => $id+1
+        );
+        // $comment["comment_id"] = $db->db_find_by("user", $user->schema(), ["id" => $comment["user_id"]])[0]["name"];
+        // var_dump($comment["comment_id"]);
+        // $id = array (
+        //   "name"  => $db->db_find_by("users", self::schema(), ["id" => $comment_id])).name
+        // );
+      }
+      return $comments_result;
     }
 
     // function check_user($email, $password){

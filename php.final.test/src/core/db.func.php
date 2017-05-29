@@ -24,7 +24,7 @@
 
       $fields = implode(", ", $schema);
 
-      $sql = "SELECT ".$fields." FROM ".$table."s";
+      $sql = "SELECT ".$fields." FROM ".$table;
       $q   = $conn->query($sql) or die("failed!");
 
       while($r = $q->fetch(PDO::FETCH_ASSOC)){
@@ -48,9 +48,10 @@
       $q   = $conn->query($sql) or die("failed!");
 
       while($r = $q->fetch(PDO::FETCH_ASSOC)){
-        for ($i = 0; $i < count($schema); $i++) {
+        for ($i = 0; $i <= count($schema); $i++) {
           $rows[$schema[$i]] = $r[$schema[$i]];
         }
+
       }
       $conn = null;
       return $rows;
@@ -85,7 +86,7 @@
 
       $fields = implode(", ", $schema);
       $values = self::prepareData($schema, $data);
-      var_dump($fields);
+      // var_dump($fields);
 
       $stmt = $conn->prepare("INSERT INTO ".$table." (".$fields.") VALUES (".$values.")");
       $stmt->execute();

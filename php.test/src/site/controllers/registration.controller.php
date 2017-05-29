@@ -13,17 +13,17 @@
         $user_data = $common->fill_entity($user->schema(), self::params());
         $notices = $user->valid(self::params());
 
-        $user->add_user($user_data);
-        header("Location:/?status=registered");
-        exit();
+        // $user->add_user($user_data);
+        // header("Location:/?status=registered");
+        // exit();
 
-        // if(is_bool($notices)) {
-        //   $user->add_user($user_data);
-        //   header("Location:/?status=registered");
-        //   exit();
-        // } else {
-        //   $user = null;
-        // }
+        if(is_bool($notices)) {
+          $user->add_user($user_data);
+          header("Location:/?status=registered");
+          exit();
+        } else {
+          $user = null;
+        }
       } else {
         $user = null;
       }
