@@ -10,7 +10,7 @@
 
       if (!empty($_POST["email"]) && !empty($_POST["password"])) {
         if (self::authorized($common)) {
-          $id = $common->get_authorized_user()['id'];
+          $id = $common->get_authorized_user()["id"];
         } else {
           $data["notices"] = [
               "Wrong email-password pair!",

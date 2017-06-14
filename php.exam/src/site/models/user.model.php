@@ -46,12 +46,12 @@
     }
 
     function schema() {
-      return ["email", "password", "full_name", "username", "avatar"];
+      return ["id", "email", "password", "full_name", "username", "avatar"];
     }
 
     public function profile_data($id){
       $db = new DB();
-      return $db->db_find("user", self::schema(), $id);
+      return $db->db_find("users", self::schema(), $id);
     }
 
     function find_by_email($email){

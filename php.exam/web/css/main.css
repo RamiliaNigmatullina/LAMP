@@ -16,25 +16,12 @@ body {
 .profile-box .profile-body{
   margin-top:30px;
 }
-.profile-box .profile-header{
-  height:450px;
-}
-.profile-box .profile-header .profile-avatar{
-  width:390px;
-}
-.profile-box .profile-header .profile-avatar img{
-  border:4px #5BC0DE solid;
-  border-radius: 50%;
-  height:390px;
+.profile-box .profile-avatar img{
   margin-top:25px;
-  width:390px;
+  width:250px;
 }
-.profile-box .profile-header .profile-avatar.owner img{
-  border-color:#DF691A;
-}
-.profile-box .profile-header .profile-info{
+.profile-box .profile-info{
   font-size:35px;
-  padding:70px 0px 0px 0px;
   width:300px;
 }
 .profile-box .profile-header .profile-info.pull-left{

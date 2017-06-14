@@ -6,7 +6,6 @@
     private $body;
     private $user_id;
     private $created_at;
-    private $updated_at;
 
     public function valid($post_params) {
       $validator = new PostValidator;
@@ -31,19 +30,14 @@
       $db = new DB();
       $common = new Common();
 
-      return $db->db_add("posts", self::schema(), $post);
-    }
+      $user_id = $common->get_authorized_user()["id"];
+      $post["user_id"] = $user_id;
+      $post["created_at"] = date("m.d.Y H:i", time());
 
-    function create_schema() {
-      return ["title", "body", "user_id", "created_at"];
-    }
+      $db->db_add("posts", self::create_schema(), $post);
+      $post = $db->db_find_last_record_by("posts", self::show_schema(), ["user_id" => $user_id]);
 
-    function show_schema() {
-      return ["id", "title", "body", "user_id", "created_at"];
-    }
-
-    function user_schema() {
-      return ["id", "username"];
+      return $post;
     }
 
     public function post_data($id){
@@ -56,5 +50,17 @@
       $posts = $db->inner_join_query("posts", "users", self::show_schema(), self::user_schema());
 
       return $posts;
+    }
+
+    function create_schema() {
+      return ["title", "body", "user_id", "created_at"];
+    }
+
+    function show_schema() {
+      return ["id", "title", "body", "user_id", "created_at"];
+    }
+
+    function user_schema() {
+      return ["id", "username"];
     }
   }

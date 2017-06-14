@@ -44,7 +44,7 @@
 
       $fields = implode(", ", $schema);
 
-      $sql = "SELECT ".$fields." FROM ".$table." WHERE (id =".$needleId.")";
+      $sql = "SELECT ".$fields." FROM ".$table." WHERE (id = ".$needleId.")";
       $q   = $conn->query($sql) or die("failed!");
 
       while($r = $q->fetch(PDO::FETCH_ASSOC)){
@@ -63,7 +63,7 @@
       $fields = implode(", ", $schema);
 
       $where = self::generateSearchData($criteria);
-      $sql = "SELECT ".$fields." FROM ".$table."s"." WHERE (".$where.")";
+      $sql = "SELECT ".$fields." FROM ".$table." WHERE (".$where.")";
 
       $q  = $conn->query($sql) or die("failed!");
 
@@ -79,6 +79,21 @@
       return $rows;
     }
 
+    public function db_find_last_record_by($table, $schema, $criteria) {
+      $row = [];
+      $conn = self::getConnection();
+
+      $fields = implode(", ", $schema);
+
+      $where = self::generateSearchData($criteria);
+      $sql = "SELECT ".$fields." FROM ".$table." WHERE (".$where.") ORDER BY ID DESC LIMIT 1";
+
+      $q  = $conn->query($sql) or die("failed!");
+      $row = $q->fetch(PDO::FETCH_ASSOC);
+
+      $conn = null;
+      return $row;
+    }
 
     public function db_add($table, $schema, $data){
       $conn = self::getConnection();
